@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@cdek-it/widget@3" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="cdek-map" style="width:800px;height:600px"></div>
+    <script type="text/javascript">
+        new window.CDEKWidget({ from: 'Новосибирск', root: 'cdek-map', apiKey: '7adfce21-96a1-4fbd-8dd7-730b5c307a48', servicePath: 'http://test2/service.php', defaultLocation: 'Новосибирск' , onReady() {
+                            alert('Виджет загружен');
+                          },
+                          onCalculate() {
+                            alert('Расчет стоимости доставки произведен');
+                          },
+                          onChoose(par1, par2, par3, par4,) {
+                            alert('Доставка выбрана');
+                            console.log('1', par1);
+                            console.log('2', par2);
+                            console.log('3', par3);
+                            console.log('4', par4);
+                          },});
+      </script>
+</body>
+</html>
