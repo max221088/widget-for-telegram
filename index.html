@@ -4,24 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@cdek-it/widget@3" charset="utf-8"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script defer src="/dist/script.js"></script>
+    <link rel="stylesheet" href="/dist/style.css">
     <title>Document</title>
 </head>
 <body>
-    <div id="cdek-map" style="width:95vw; height:90vh; margin: 0 auto;"></div>
-    <script type="text/javascript">
-        new window.CDEKWidget({ from: 'Новосибирск', root: 'cdek-map', apiKey: '7adfce21-96a1-4fbd-8dd7-730b5c307a48', servicePath: 'http://207.180.192.171:2324/service.php', defaultLocation: 'Новосибирск' , onReady() {
-                            alert('Виджет загружен');
-                          },
-                          onCalculate() {
-                            alert('Расчет стоимости доставки произведен');
-                          },
-                          onChoose(par1, par2, par3, par4,) {
-                            alert('Доставка выбрана');
-                            console.log('1', par1);
-                            console.log('2', par2);
-                            console.log('3', par3);
-                            console.log('4', par4);
-                          },});
-      </script>
+    <div id="cdek-map" class="map" style="width:95vw; height:90vh;"></div>
+    <button id="close">Закрыть</button>
 </body>
 </html>
