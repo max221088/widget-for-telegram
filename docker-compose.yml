@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nginx_php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./service.php:/var/www/html/service.php
+      - ./index.html:/var/www/html/index.html
+      - ./dist:/var/www/html/dist
+    depends_on:
+      - php
+
+  php:
+    image: php:8.2-fpm
+    volumes:
+      - ./service.php:/var/www/html/service.php
+
