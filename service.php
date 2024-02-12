@@ -1,14 +1,26 @@
 <?php
 
-$service = new service(/**
- * Вставьте свой аккаунт\идентификатор для интеграции
- * Put your account for integration here
- */ 'cdek-login',
+$envFilePath = __DIR__ . '/.env';
 
-    /**
-     * Вставьте свой пароль для интеграции
-     * Put your password for integration here
-     */ 'cdek-pass');
+$envFileContent = file_get_contents($envFilePath);
+
+$envLines = explode("\n", $envFileContent);
+
+foreach ($envLines as $line) {
+    $line = trim($line);
+    if (!empty($line) && strpos($line, '=') !== false && substr($line, 0, 1) !== '#') {
+        list($key, $value) = explode('=', $line, 2);
+        $key = trim($key);
+        $value = trim($value);
+        $_ENV[$key] = $value;
+    }
+}
+
+$CDEK_LOGIN = $_ENV['CDEK_LOGIN'];
+$CDEK_PASS = $_ENV['CDEK_PASS'];
+$CDEK_API = $_ENV['CDEK_API'];
+
+$service = new service($CDEK_LOGIN, $CDEK_PASS, $CDEK_API);
 $service->process($_GET, file_get_contents('php://input'));
 
 class service
@@ -34,7 +46,7 @@ class service
      */
     private $requestData;
 
-    public function __construct($login, $secret, $baseUrl = 'https://api.cdek.ru/v2')
+    public function __construct($login, $secret, $baseUrl)
     {
         $this->login = $login;
         $this->secret = $secret;

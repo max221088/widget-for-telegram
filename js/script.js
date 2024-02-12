@@ -16,21 +16,21 @@ loadEnvFile()
   .then(parseEnvFile)
   .then((envVariables) => {
     apiKey = envVariables.API_KEY;
-    console.log("API Token:", apiKey);
+
     new window.CDEKWidget({
       from: "Новосибирск",
       root: "cdek-map",
       apiKey: apiKey,
-      servicePath: "http://localhost:2324/service.php",
+      servicePath: envVariables.SERVICE_PATH,
       defaultLocation: "Новосибирск",
       onReady() {
-        alert("Виджет загружен");
+        console.log("Виджет загружен");
       },
       onCalculate() {
-        alert("Расчет стоимости доставки произведен");
+        console.log("Расчет стоимости доставки произведен");
       },
       onChoose(par1, par2, par3, par4) {
-        alert("Доставка выбрана");
+        console.log("Доставка выбрана");
         console.log("1", par1);
         console.log("2", par2);
         console.log("3", par3);
