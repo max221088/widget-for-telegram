@@ -1,5 +1,5 @@
 function loadEnvFile() {
-  return fetch(".env").then((response) => response.text());
+  return fetch("/.env").then((response) => response.text());
 }
 
 function parseEnvFile(envFile) {
@@ -11,7 +11,18 @@ function parseEnvFile(envFile) {
   });
   return envVariables;
 }
+
 let apiKey = null;
+
+const tg = window.Telegram.WebApp;
+tg.expand();
+tg.MainButton.setParams({
+  color: "#143F6B",
+  text: "Готово",
+  textColor: "#F55353",
+  сolor: "#143F6B",
+});
+
 loadEnvFile()
   .then(parseEnvFile)
   .then((envVariables) => {
@@ -29,19 +40,16 @@ loadEnvFile()
       onCalculate() {
         console.log("Расчет стоимости доставки произведен");
       },
-      onChoose(par1, par2, par3, par4) {
-        console.log("Доставка выбрана");
-        console.log("1", par1);
-        console.log("2", par2);
-        console.log("3", par3);
-        console.log("4", par4);
+      onChoose(type, tariff, address) {
+        tg.MainButton.show();
+        Telegram.WebApp.onEvent("mainButtonClicked", function () {
+          tg.sendData(
+            `Доставка выбрана!!! \nКод отделения ${address.postal_code} \nТип Доставки ${address.type}`
+          );
+        });
       },
     });
   })
   .catch((error) => {
     console.error("Error loading .env file:", error);
   });
-
-const tg = new window.Telegram.WebApp();
-const close = document.getElementById("close");
-close.addEventListener("click", tg.close());
