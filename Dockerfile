@@ -11,6 +11,7 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Копируем файлы проекта в директорию /var/www/html
 COPY . /var/www/html
+COPY .env /var/www/html
 
 # Устанавливаем рабочую директорию
 WORKDIR /var/www/html
