@@ -1,5 +1,5 @@
 function loadEnvFile() {
-  return fetch("/.env").then((response) => response.text());
+  return fetch(".env").then((response) => response.text());
 }
 
 function parseEnvFile(envFile) {
