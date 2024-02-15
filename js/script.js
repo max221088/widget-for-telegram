@@ -1,7 +1,5 @@
 function loadEnvFile() {
-  return fetch("http://localhost:2324/.env").then((response) =>
-    response.text()
-  );
+  return fetch(".env").then((response) => response.text());
 }
 
 function parseEnvFile(envFile) {
