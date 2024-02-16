@@ -7,12 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "2324:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./service.php:/var/www/html/service.php
-      - ./.env:/var/www/html/.env
-      - ./index.html:/var/www/html/index.html
-      - ./dist:/var/www/html/dist
     depends_on:
       - php
 
@@ -21,4 +15,3 @@ services:
     volumes:
       - ./service.php:/var/www/html/service.php
       - ./.env:/var/www/html/.env
-

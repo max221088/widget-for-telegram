@@ -5,4 +5,6 @@ body {
 
 .map {
     margin: 0 auto;
+    width:95vw; 
+    height:90vh;
 }
